@@ -10,7 +10,9 @@ contract KPIOracle {
     constructor(address _signer){ signer=_signer; }
 
     function update(uint256 _epoch, uint256 _value, bytes calldata sig) external {
-        bytes32 message = keccak256(abi.encodePacked(_epoch, _value));
+        bytes32 message = keccak256(
+            abi.encodePacked(block.chainid, address(this), _epoch, _value)
+        );
         address recoveredSigner = recoverSigner(message, sig);
         require(recoveredSigner == signer, "Invalid signature");
 
