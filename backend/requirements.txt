@@ -2,3 +2,7 @@ fastapi
 uvicorn[standard]
 web3
 eth_account
+ccxt
+numpy
+pandas
+huggingface-hub
